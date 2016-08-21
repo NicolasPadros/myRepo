@@ -1,10 +1,11 @@
 package anaydis.sort;
 
 import anaydis.sort.data.DataSetGenerator;
+import anaydis.sort.data.IntegerDataSetGenerator;
 import anaydis.sort.data.StringDataSetGenerator;
 
 /**
- * Data set generator test
+ * data set generator test
  */
 public class DataSetGeneratorTest extends AbstractDataSetGeneratorTest {
 
@@ -12,7 +13,7 @@ public class DataSetGeneratorTest extends AbstractDataSetGeneratorTest {
         return new StringDataSetGenerator();
     }
 
-    @Override protected DataSetGenerator<Integer> createIntegerDataSetGenerator() {
-        throw new IllegalStateException("To be implemented!");
+    @Override protected IntegerDataSetGenerator createIntegerDataSetGenerator() {
+        return new IntegerDataSetGenerator();
     }
 }
