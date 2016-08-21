@@ -16,6 +16,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Sorter tests should subclass this abstract implementation
  */
 abstract class SorterTest extends AbstractSorterTest {
+    protected anaydis.sort.provider.SorterProvider getSorterProvider() {
+        return new anaydis.sort.SorterProvider();
+    }
+
 
 
 
@@ -27,11 +31,11 @@ abstract class SorterTest extends AbstractSorterTest {
         return new IntegerDataSetGenerator();
     }
 
-    @Test
+
     protected void testAscendingOrder(int size, SorterType type) {
 
         final List<Integer> list = new IntegerDataSetGenerator().createAscending(size);
-        final anaydis.sort.provider.SorterProvider provider = new anaydis.sort.SorterProvider();
+        final anaydis.sort.provider.SorterProvider provider = getSorterProvider();
         final List<Integer> copy = new ArrayList<>(list);
 
 
@@ -45,11 +49,11 @@ abstract class SorterTest extends AbstractSorterTest {
         assertThat(copy).containsExactlyElementsOf(list);
     }
 
-    @Test
+
     protected void testDescendingOrder(int size, SorterType type) {
 
         final List<Integer> list = new IntegerDataSetGenerator().createDescending(size);
-        final anaydis.sort.provider.SorterProvider provider = new anaydis.sort.SorterProvider();
+        final anaydis.sort.provider.SorterProvider provider = getSorterProvider();
         final List<Integer> copy = new ArrayList<>(list);
 
 
@@ -65,7 +69,7 @@ abstract class SorterTest extends AbstractSorterTest {
 
     protected void testRandomOrder(int size, SorterType type){
         final List<Integer> list = new IntegerDataSetGenerator().createRandom(size);
-        final anaydis.sort.provider.SorterProvider provider = new anaydis.sort.SorterProvider();
+        final anaydis.sort.provider.SorterProvider provider = getSorterProvider();
         final List<Integer> copy = new ArrayList<>(list);
 
 

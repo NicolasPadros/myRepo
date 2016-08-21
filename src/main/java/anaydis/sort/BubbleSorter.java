@@ -9,6 +9,7 @@ import java.util.List;
  * Created by isabel on 8/20/16.
  */
 public class BubbleSorter extends AbstractSorter {
+
     public BubbleSorter() {
         super(SorterType.BUBBLE);
     }
