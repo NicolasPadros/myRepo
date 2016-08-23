@@ -1,5 +1,7 @@
 package anaydis.sort;
 
+import anaydis.sort.data.IntegerDataSetGenerator;
+import anaydis.sort.data.StringDataSetGenerator;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -9,78 +11,47 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class BubbleSorterTest extends SorterTest {
     /*
-    protected anaydis.sort.provider.SorterProvider getSorterProvider() {
-        return new anaydis.sort.SorterProvider();
+    protected anaydis.sort.provider.SorterProviderImpl getSorterProvider() {
+        return new anaydis.sort.provider.SorterProviderImpl();
     }
     */
+
     @Test
     public void getTypeTest(){
         Sorter sorter = new BubbleSorter();
         assertThat(sorter.getType().compareTo(SorterType.BUBBLE));
     }
 
-    public void testAscendingInt10(){
-        testAscendingOrder(10, SorterType.BUBBLE);
+    @Test public void testIntegerSorter10(){
+        testSorter(new IntegerDataSetGenerator(), SorterType.BUBBLE, 10);
     }
-
-    @Test
-    public void testDesdendingInt10(){
-        testDescendingOrder(10, SorterType.BUBBLE);
-    }
-
-    @Test public void testRandomInt10() {
-        testRandomOrder(10, SorterType.BUBBLE);
+    @Test public void testIntegerSorter50(){
+        testSorter(new IntegerDataSetGenerator(), SorterType.BUBBLE, 50);
     }
 
 
-
-    @Test
-    public void testAscendingInt50(){
-        testAscendingOrder(50, SorterType.BUBBLE);
+    @Test public void testIntegerSorter500(){
+        testSorter(new IntegerDataSetGenerator(), SorterType.BUBBLE, 500);
+    }
+    @Test public void testIntegerSorter1000(){
+        testSorter(new IntegerDataSetGenerator(), SorterType.BUBBLE, 1000);
+    }
+    @Test public void testIntegerSorter5000(){
+        testSorter(new IntegerDataSetGenerator(), SorterType.BUBBLE, 5000);
     }
 
-    @Test public void testDesdendingInt50(){
-        testDescendingOrder(50, SorterType.BUBBLE);
+    @Test public void testStringSorter10(){
+        testSorter(new StringDataSetGenerator(), SorterType.BUBBLE, 10);
     }
 
-    @Test public void testRandomInt50(){
-        testRandomOrder(50, SorterType.BUBBLE);
-
-    }    @Test
-    public void testAscendingInt500(){
-        testAscendingOrder(500, SorterType.BUBBLE);
+    @Test public void testStringSorter50(){
+        testSorter(new StringDataSetGenerator(), SorterType.BUBBLE, 50);
     }
 
-    @Test public void testDesdendingInt500(){
-        testDescendingOrder(500, SorterType.BUBBLE);
+    @Test public void testStringSorter100(){
+        testSorter(new StringDataSetGenerator(), SorterType.BUBBLE, 100);
     }
 
-    @Test public void testRandomInt500(){
-        testRandomOrder(500, SorterType.BUBBLE);
 
-    }    @Test
-    public void testAscendingInt1000(){
-        testAscendingOrder(1000, SorterType.BUBBLE);
-    }
 
-    @Test public void testDesdendingInt1000(){
-        testDescendingOrder(1000, SorterType.BUBBLE);
-    }
-
-    @Test public void testRandomInt1000(){
-        testRandomOrder(1000, SorterType.BUBBLE);
-
-    }
-    @Test
-    public void testAscendingInt5000(){
-        testAscendingOrder(5000, SorterType.BUBBLE);
-    }
-
-    @Test public void testDesdendingInt5000(){
-        testDescendingOrder(5000, SorterType.BUBBLE);
-    }
-
-    @Test public void testRandomInt5000(){
-        testRandomOrder(5000, SorterType.BUBBLE);
-    }
 }

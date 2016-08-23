@@ -1,5 +1,6 @@
-package anaydis.sort;
+package anaydis.sort.provider;
 
+import anaydis.sort.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -7,10 +8,10 @@ import java.util.*;
 /**
  * Created by isabel on 8/20/16.
  */
-public class SorterProvider implements anaydis.sort.provider.SorterProvider {
+public class SorterProviderImpl implements SorterProvider {
     private Map<SorterType, Sorter> sorters;
 
-    public SorterProvider() {
+    public SorterProviderImpl() {
         sorters = new EnumMap(SorterType.class);
         sorters.put(SorterType.INSERTION, new InsertionSorter());
         sorters.put(SorterType.SELECTION, new SelectionSorter());

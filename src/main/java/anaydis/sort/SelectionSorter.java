@@ -1,5 +1,6 @@
 package anaydis.sort;
 
+import anaydis.sort.gui.SorterListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
@@ -27,4 +28,6 @@ public class SelectionSorter extends AbstractSorter {
             swap(list, i, min);
         }
     }
+
+
 }
