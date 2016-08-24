@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Created by isabel on 8/20/16.
  */
 public class SelectionSorterTest extends SorterTest {
+
     @Test public void testIntegerSorter10(){
         testSorter(new IntegerDataSetGenerator(), SorterType.SELECTION, 10);
     }
@@ -24,15 +25,15 @@ public class SelectionSorterTest extends SorterTest {
         testSorter(new IntegerDataSetGenerator(), SorterType.SELECTION, 1000);
     }
     @Test public void testIntegerSorter5000(){
-        testSorter(new IntegerDataSetGenerator(), SorterType.INSERTION, 5000);
+        testSorter(new IntegerDataSetGenerator(), SorterType.SELECTION, 5000);
     }
 
     @Test public void testStringSorter10(){
-        testSorter(new StringDataSetGenerator(), SorterType.INSERTION, 10);
+        testSorter(new StringDataSetGenerator(), SorterType.SELECTION, 10);
     }
 
     @Test public void testStringSorter50(){
-        testSorter(new StringDataSetGenerator(), SorterType.INSERTION, 50);
+        testSorter(new StringDataSetGenerator(), SorterType.SELECTION, 50);
     }
 
 

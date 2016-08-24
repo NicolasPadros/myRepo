@@ -15,11 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Created by isabel on 8/20/16.
  */
 public class BubbleSorterTest extends SorterTest {
-    /*
-    protected anaydis.sort.provider.SorterProviderImpl getSorterProvider() {
-        return new anaydis.sort.provider.SorterProviderImpl();
-    }
-    */
+
     @Test
     public void testRemoveListener(){
         final BubbleSorter sorter = new BubbleSorter();
@@ -60,10 +56,6 @@ public class BubbleSorterTest extends SorterTest {
 
     @Test public void testStringSorter50(){
         testSorter(new StringDataSetGenerator(), SorterType.BUBBLE, 50);
-    }
-
-    @Test public void testStringSorter100(){
-        testSorter(new StringDataSetGenerator(), SorterType.BUBBLE, 100);
     }
 
 

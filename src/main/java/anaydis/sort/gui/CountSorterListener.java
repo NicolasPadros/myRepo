@@ -7,6 +7,8 @@ public class CountSorterListener implements SorterListener {
     private int swaps;
     private int greaters;
     private long initialTime;
+    private long sortingTime;
+
 
 
     public CountSorterListener() {
@@ -15,14 +17,11 @@ public class CountSorterListener implements SorterListener {
     }
 
     public void init(){
-        initialTime = System.currentTimeMillis();
+        initialTime = System.nanoTime();
     }
 
     public void finish(){
-        long sortTime = System.currentTimeMillis() - initialTime;
-        System.out.println("Total sorting time: " + sortTime);
-        System.out.println("Total number of swaps: " + swaps);
-        System.out.println("Total number of comparisons: " + greaters);
+        sortingTime = System.nanoTime() - initialTime;
     }
 
     @Override
