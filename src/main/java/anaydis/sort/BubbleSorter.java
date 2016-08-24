@@ -1,5 +1,6 @@
 package anaydis.sort;
 
+import anaydis.sort.gui.CountSorterListener;
 import anaydis.sort.gui.SorterListener;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,6 +18,7 @@ public class BubbleSorter extends AbstractSorter {
 
     @Override
     public <T> void sort(@NotNull Comparator<T> comparator, @NotNull List<T> list) {
+            initListeners();
             boolean swap = true;
             int j = 0;
             T t;
@@ -24,12 +26,14 @@ public class BubbleSorter extends AbstractSorter {
                 swap = false;
                 j++;
                 for (int i = 0; i < list.size() - j; i++) {
-                    if (greater(list.get(i), list.get(i + 1), comparator)) {
+                    if (greater(list.get(i), list.get(i + 1), comparator) && !list.get(i).equals(list.get(i+1))) {
                         swap(list, i, i+1);
                         swap = true;
                     }
                 }
             }
+            finishListeners();
+
         }
 
 
