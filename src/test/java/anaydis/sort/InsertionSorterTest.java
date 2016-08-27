@@ -8,7 +8,6 @@ import org.junit.Test;
  * Created by isabel on 8/20/16.
  */
 public class InsertionSorterTest extends SorterTest {
-
     @Test public void testIntegerSorter10(){
         testSorter(new IntegerDataSetGenerator(), SorterType.INSERTION, 10);
     }

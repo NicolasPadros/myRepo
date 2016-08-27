@@ -1,8 +1,11 @@
 package anaydis.sort;
 
+import anaydis.sort.data.DataSetGenerator;
+import anaydis.sort.provider.SorterProvider;
 import anaydis.sort.provider.SorterProviderImpl;
 import anaydis.sort.data.IntegerDataSetGenerator;
 import anaydis.sort.data.StringDataSetGenerator;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,7 +31,6 @@ abstract class SorterTest extends AbstractSorterTest {
     @Override protected IntegerDataSetGenerator createIntegerDataSetGenerator() {
         return new IntegerDataSetGenerator();
     }
-
 
 
 }

@@ -1,6 +1,6 @@
 package anaydis.sort;
 
-import anaydis.sort.gui.CountSorterListener;
+import anaydis.sort.statistics.CountSorterListener;
 import anaydis.sort.gui.ObservableSorter;
 import anaydis.sort.gui.SorterListener;
 import org.jetbrains.annotations.NotNull;
@@ -13,10 +13,10 @@ import java.util.List;
  * Abstract sorter: all sorter implementations should subclass this class.
  */
 abstract class AbstractSorter<T> implements Sorter, ObservableSorter{
-    protected List<CountSorterListener> listeners;
+    protected List<SorterListener> listeners;
     private SorterType type;
 
-    public AbstractSorter(SorterType type) {
+    protected AbstractSorter(@NotNull final SorterType type) {
         listeners = new ArrayList<>();
         this.type = type;
         addSorterListener(new CountSorterListener());
@@ -28,44 +28,64 @@ abstract class AbstractSorter<T> implements Sorter, ObservableSorter{
         return type;
     }
 
-    protected void initListeners(){
-        for(CountSorterListener listener: listeners){
-            listener.init();
-        }
-    }
-
-    protected void finishListeners(){
-        /*
-        for(int i = 0; i < listeners.size(); i++){
-            listeners.get(i).finish();
-            listeners.remove(i);
-        }
-        */
-        for(CountSorterListener listener: listeners){
-            listener.finish();
-        }
-
-
-    }
 
     protected boolean greater(T v, T w, Comparator<T> comp) {
-        for(CountSorterListener listener: listeners){
-            listener.greater(0, 0);
-        }
+        dataTypeListeners(v.getClass());
+        greaterListeners();
         return comp.compare(v,w) > 0;
     }
 
     protected void swap(List<T> list, int i, int j) {
-        for(CountSorterListener listener: listeners){
-            listener.swap(0, 0);
-        }
+        lengthListeners(list.size());
+        swapListeners(i, j);
+
+        //list.set(i, list.set(i, list.get(j)));
+
         T t = list.get(i);
         list.set(i, list.get(j));
         list.set(j, t);
+
+    }
+
+    protected void greaterListeners(){
+        for(SorterListener listener: listeners){
+            listener.greater(0, 0);
+        }
+    }
+
+    protected void swapListeners(int i, int j) {
+        for(SorterListener listener: listeners){
+            listener.swap(i, j);
+        }
+    }
+
+    protected void initListeners(){
+        for(SorterListener listener: listeners){
+            ((CountSorterListener)listener).init();
+        }
+    }
+
+    protected void lengthListeners(int length){
+        for(SorterListener listener: listeners){
+            ((CountSorterListener)listener).length(length);
+        }
+    }
+
+    private void dataTypeListeners(Class dataType) {
+        for(SorterListener listener: listeners){
+            ((CountSorterListener)listener).setDataType(dataType);
+        }
+    }
+
+    protected void finishListeners() {
+        for (SorterListener listener : listeners) {
+            ((CountSorterListener) listener).finish();
+        }
     }
 
 
     public void addSorterListener(SorterListener listener){
+        ((CountSorterListener)listener).setSorterType(type);
         listeners.add((CountSorterListener)listener);
     }
 
@@ -73,7 +93,7 @@ abstract class AbstractSorter<T> implements Sorter, ObservableSorter{
         listeners.remove(listener);
     }
 
-    public List<CountSorterListener> getListeners(){
+    public List<SorterListener> getListeners(){
         return listeners;
     }
 }

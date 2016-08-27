@@ -2,12 +2,7 @@ package anaydis.sort;
 
 import anaydis.sort.data.IntegerDataSetGenerator;
 import anaydis.sort.data.StringDataSetGenerator;
-import anaydis.sort.gui.CountSorterListener;
-import anaydis.sort.gui.ObservableSorter;
-import anaydis.sort.gui.SorterListener;
 import org.junit.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,7 +10,14 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Created by isabel on 8/20/16.
  */
 public class BubbleSorterTest extends SorterTest {
+    /*
+    protected anaydis.sort.provider.SorterProviderImpl getSorterProvider() {
+        return new anaydis.sort.provider.SorterProviderImpl();
+    }
+    */
 
+    //Goes for all Sorters, chose BubbleSorter randomly
+    /*
     @Test
     public void testRemoveListener(){
         final BubbleSorter sorter = new BubbleSorter();
@@ -31,6 +33,7 @@ public class BubbleSorterTest extends SorterTest {
         Sorter sorter = new BubbleSorter();
         assertThat(sorter.getType().compareTo(SorterType.BUBBLE));
     }
+    */
 
     @Test public void testIntegerSorter10(){
         testSorter(new IntegerDataSetGenerator(), SorterType.BUBBLE, 10);
@@ -56,6 +59,10 @@ public class BubbleSorterTest extends SorterTest {
 
     @Test public void testStringSorter50(){
         testSorter(new StringDataSetGenerator(), SorterType.BUBBLE, 50);
+    }
+
+    @Test public void testStringSorter100(){
+        testSorter(new StringDataSetGenerator(), SorterType.BUBBLE, 100);
     }
 
 

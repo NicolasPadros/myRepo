@@ -16,6 +16,12 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class FullNameSortTest {
 
+    /*
+    public int compare(FullName f1, FullName f2){
+
+           }
+     */
+
     @Test
     public void testFullNameBubble() {
 
@@ -36,38 +42,16 @@ public class FullNameSortTest {
         final List<FullName> copy = new ArrayList<>(original);
         final SorterProvider provider = new SorterProviderImpl();
         final Sorter bubble = provider.getSorterForType(SorterType.BUBBLE);
-        bubble.sort(new Comparator<FullName>() {
-            @Override
-            public int compare(FullName name1, FullName name2) {
-                return name1.getFirstname().compareTo(name2.getFirstname());
-            }
-        }, copy);
+        bubble.sort(new NameComparator(), copy);
 
 
-        Collections.sort(original, new Comparator<FullName>() {
-            @Override
-            public int compare(FullName name1, FullName name2) {
-                return name1.getFirstname().compareTo(name2.getFirstname());
-            }
-        });
-        ;
-
+        Collections.sort(original, new NameComparator());
 
         assertThat(copy).containsExactlyElementsOf(original);
-        bubble.sort(new Comparator<FullName>() {
-            @Override
-            public int compare(FullName name1, FullName name2) {
-                return name1.getLastname().compareTo(name2.getLastname());
-            }
-        }, copy);
+        bubble.sort(new LastNameComparator(), copy);
 
         // Sort original with java collections
-        Collections.sort(original, new Comparator<FullName>() {
-            @Override
-            public int compare(FullName name1, FullName name2) {
-                return name1.getLastname().compareTo(name2.getLastname());
-            }
-        });
+        Collections.sort(original, new LastNameComparator());
         ;
         for(FullName name : copy){
             System.out.println(name.getFirstname() + " " + name.getLastname());
@@ -197,6 +181,20 @@ public class FullNameSortTest {
         // Assert correctly sorted
         assertThat(copy).containsExactlyElementsOf(original);
 
+    }
+
+    private static class NameComparator implements Comparator<FullName> {
+        @Override
+        public int compare(FullName name1, FullName name2) {
+            return name1.getFirstname().compareTo(name2.getFirstname());
+        }
+    }
+
+    private static class LastNameComparator implements Comparator<FullName> {
+        @Override
+        public int compare(FullName name1, FullName name2) {
+            return name1.getLastname().compareTo(name2.getLastname());
+        }
     }
 }
 
