@@ -60,37 +60,50 @@ abstract class AbstractSorter<T> implements Sorter, ObservableSorter{
     }
 
     protected void initListeners(){
-        for(SorterListener listener: listeners){
-            ((CountSorterListener)listener).init();
+        for(SorterListener listener: listeners) {
+            if (listener.getClass().equals(CountSorterListener.class)) {
+                ((CountSorterListener) listener).init();
+            }
         }
     }
 
     protected void lengthListeners(int length){
-        for(SorterListener listener: listeners){
-            ((CountSorterListener)listener).length(length);
+        for(SorterListener listener: listeners) {
+            if (listener.getClass().equals(CountSorterListener.class)) {
+                ((CountSorterListener) listener).length(length);
+            }
         }
     }
 
     private void dataTypeListeners(Class dataType) {
-        for(SorterListener listener: listeners){
-            ((CountSorterListener)listener).setDataType(dataType);
+        for(SorterListener listener: listeners) {
+            if (listener.getClass().equals(CountSorterListener.class)) {
+                ((CountSorterListener) listener).setDataType(dataType);
+            }
         }
     }
 
     protected void finishListeners() {
         for (SorterListener listener : listeners) {
-            ((CountSorterListener) listener).finish();
+            if (listener.getClass().equals(CountSorterListener.class)) {
+                ((CountSorterListener) listener).finish();
+            }
         }
     }
 
 
     public void addSorterListener(SorterListener listener){
-        ((CountSorterListener)listener).setSorterType(type);
-        listeners.add((CountSorterListener)listener);
+        if (listener.getClass().equals(CountSorterListener.class)) {
+            ((CountSorterListener)listener).setSorterType(type);
+        }
+        listeners.add(listener);
     }
 
     public void removeSorterListener(SorterListener listener){
         listeners.remove(listener);
+    }
+    public void removeLastSorterListener(){
+        listeners.remove(listeners.size()-1);
     }
 
     public List<SorterListener> getListeners(){

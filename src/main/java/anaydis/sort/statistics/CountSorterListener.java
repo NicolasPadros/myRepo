@@ -29,7 +29,7 @@ public class CountSorterListener implements SorterListener {
 
     public void finish(){
         sortTime = System.nanoTime() - initialTime;
-        writeRecord(this, "tp2");
+        writeRecord(this, "Statistics");
     }
 
 

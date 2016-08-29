@@ -9,8 +9,8 @@ import java.util.List;
  * Created by isabel on 8/26/16.
 **/
  public class HSorter extends AbstractSorter {
-    public HSorter() {
-        super(SorterType.H);
+    public HSorter(SorterType type) {
+        super(type);
     }
 
     public <T> void sort(Comparator<T> comparator, List<T> list) {
@@ -24,9 +24,11 @@ import java.util.List;
             int j = i;
             while (j >= left+h && !greater(v, list.get(j-h), comparator) && !v.equals(list.get(j-h))) {
                 list.set(j, list.get(j-h));
+                swapListeners(j, j-h);
                 j -= h;
             }
-            list.set(j, v);
+            list.set(j, list.get(i));
+            swapListeners(j, i);
         }
         finishListeners();
     }

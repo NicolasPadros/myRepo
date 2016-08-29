@@ -5,6 +5,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
+import static anaydis.sort.SorterType.H;
+
 /**
  * Created by isabel on 8/20/16.
  */
@@ -17,7 +19,7 @@ public class SorterProviderImpl implements SorterProvider {
         sorters.put(SorterType.SELECTION, new SelectionSorter());
         sorters.put(SorterType.BUBBLE, new BubbleSorter());
         sorters.put(SorterType.SHELL, new ShellSorter());
-        sorters.put(SorterType.H, new HSorter());
+        sorters.put(H, new HSorter(H));
         sorters.put(SorterType.QUICK, new QuickSorter());
     }
 
