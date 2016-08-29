@@ -16,6 +16,7 @@ import static anaydis.sort.SorterType.H;
  */
 public class QuickMain {
     public static void main(String[] args) {
+
     ShellSorter sorter = new ShellSorter();
         List<Integer> list = new ArrayList<>(10);
         for(int i = 0; i < 3; i++){
@@ -25,5 +26,6 @@ public class QuickMain {
 
         sorter.sort(Comparator.naturalOrder(), list);
         for(Integer i : list) System.out.println(i);
-    }
+
+}
 }

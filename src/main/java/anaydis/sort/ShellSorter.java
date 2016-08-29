@@ -17,7 +17,7 @@ public class ShellSorter extends HSorter{
 
     private <T> void sort(Comparator<T> comparator, List<T> list, int left, int right) {
         initListeners();
-        //lengthListeners(list.size());
+        lengthListeners(list.size());
         int h;
         for (h = 1; h <= (right - left) / 9; h = 3 * h + 1);
             for (; h > 0; h /= 3) {
@@ -31,6 +31,14 @@ public class ShellSorter extends HSorter{
         sort(comparator, list, 0, list.size()-1);
     }
 
+    public <T> void sort(Comparator<T> comparator, List<T> list, int[] sequence) {
+        initListeners();
+        lengthListeners(list.size());
+        for(int gap : sequence){
+            sort(comparator, list, gap);
+        }
+        finishListeners();
+    }
 }
 
 
