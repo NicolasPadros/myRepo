@@ -22,7 +22,7 @@ import java.util.List;
         for (int i = left+h; i <= right; i++) {
             T v = list.get(i);
             int j = i;
-            while (j >= left+h && !greater(v, list.get(j-h), comparator) && !v.equals(list.get(j-h))) {
+            while (j >= left+h && greater(list.get(j-h), vc, comparator) && !v.equals(list.get(j-h))) {
                 list.set(j, list.get(j-h));
                 swapListeners(j, j-h);
                 j -= h;
