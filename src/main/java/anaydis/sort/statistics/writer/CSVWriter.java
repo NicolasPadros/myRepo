@@ -36,29 +36,7 @@ public class CSVWriter {
         }
     }
 
-    public void writeLine(String[] toWrite){
-        for(String string : toWrite){
-            try {
-                writer.write(string);
-                writer.write(',');
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        try {
-            writer.newLine();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
-    public void writeLine(long[] toWrite){
-        String[] writingArray = new String[toWrite.length];
-        for (int i = 0; i<toWrite.length; i++){
-            writingArray[i] = Long.toString(toWrite[i]);
-        }
-        writeLine(writingArray);
-    }
 
     public void newLine(){
         try {

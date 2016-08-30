@@ -19,7 +19,20 @@ public class StatisticsWriter {
         try {
             final BufferedReader br = new BufferedReader(new FileReader(fileName + ".csv"));
             if (br.readLine() == null) {
-                firstOpen(writer);
+                writer.writeString("DATE");
+                writer.addComma();
+                writer.writeString("SORTER TYPE");
+                writer.addComma();
+                writer.writeString("DATA TYPE");
+                writer.addComma();
+                writer.writeString("LENGTH");
+                writer.addComma();
+                writer.writeString("SWAPS");
+                writer.addComma();
+                writer.writeString("COMPARITIONS");
+                writer.addComma();
+                writer.writeString("NANO TIME");
+                writer.newLine();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,23 +53,6 @@ public class StatisticsWriter {
         writer.writeLong(recordToWrite.getNanoTime());
         writer.newLine();
         writer.close();
-    }
-
-    private static void firstOpen(CSVWriter writer){
-        writer.writeString("DATE");
-        writer.addComma();
-        writer.writeString("SORTER TYPE");
-        writer.addComma();
-        writer.writeString("DATA TYPE");
-        writer.addComma();
-        writer.writeString("LENGTH");
-        writer.addComma();
-        writer.writeString("SWAPS");
-        writer.addComma();
-        writer.writeString("COMPARITIONS");
-        writer.addComma();
-        writer.writeString("NANO TIME");
-        writer.newLine();
     }
 
     private static String getDateAndTime(){

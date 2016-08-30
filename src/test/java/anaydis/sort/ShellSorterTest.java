@@ -28,17 +28,38 @@ public class ShellSorterTest extends SorterTest {
     }
 
     @Test
-    public void testSequences(){
+    public void testRandomSequences100(){
             final SorterProvider provider = new SorterProviderImpl();
             final IntegerDataSetGenerator generator = new IntegerDataSetGenerator();
-            final List<Integer> original = generator.createRandom(20000);
+            final List<Integer> original = generator.createRandom(100);
             int[] sequence1 = {1, 8, 23, 77, 281, 1073, 4193, 16577};
             int[] sequence2 = {1, 4, 13, 40, 121, 364, 1093, 3280, 9841};
-
             final ShellSorter shellSorter = (ShellSorter)provider.getSorterForType(SorterType.SHELL);
             shellSorter.sort(Comparator.<Integer>naturalOrder(), original, sequence1);
             shellSorter.sort(Comparator.<Integer>naturalOrder(), original, sequence2);
-
         }
+
+    @Test
+    public void testRandomSequences1000(){
+        final SorterProvider provider = new SorterProviderImpl();
+        final IntegerDataSetGenerator generator = new IntegerDataSetGenerator();
+        final List<Integer> original = generator.createRandom(1000);
+        int[] sequence1 = {1, 8, 23, 77, 281, 1073, 4193, 16577};
+        int[] sequence2 = {1, 4, 13, 40, 121, 364, 1093, 3280, 9841};
+        final ShellSorter shellSorter = (ShellSorter)provider.getSorterForType(SorterType.SHELL);
+        shellSorter.sort(Comparator.<Integer>naturalOrder(), original, sequence1);
+        shellSorter.sort(Comparator.<Integer>naturalOrder(), original, sequence2);
+    }
+    @Test
+    public void testRandomSequences10000(){
+        final SorterProvider provider = new SorterProviderImpl();
+        final IntegerDataSetGenerator generator = new IntegerDataSetGenerator();
+        final List<Integer> original = generator.createRandom(10000);
+        int[] sequence1 = {1, 8, 23, 77, 281, 1073, 4193, 16577};
+        int[] sequence2 = {1, 4, 13, 40, 121, 364, 1093, 3280, 9841};
+        final ShellSorter shellSorter = (ShellSorter)provider.getSorterForType(SorterType.SHELL);
+        shellSorter.sort(Comparator.<Integer>naturalOrder(), original, sequence1);
+        shellSorter.sort(Comparator.<Integer>naturalOrder(), original, sequence2);
+    }
     }
 

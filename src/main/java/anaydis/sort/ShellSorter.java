@@ -35,7 +35,7 @@ public class ShellSorter extends HSorter{
         initListeners();
         lengthListeners(list.size());
         for(int gap : sequence){
-            sort(comparator, list, gap);
+            if(gap < list.size()-1) sort(comparator, list, gap);
         }
         finishListeners();
     }
