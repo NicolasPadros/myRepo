@@ -2,6 +2,8 @@ package anaydis.sort;
 
 import anaydis.sort.data.IntegerDataSetGenerator;
 import anaydis.sort.data.StringDataSetGenerator;
+import anaydis.sort.exercise3.FullName;
+import anaydis.sort.exercise3.FullNameSortTest;
 import anaydis.sort.provider.SorterProvider;
 import anaydis.sort.provider.SorterProviderImpl;
 import org.junit.Test;
@@ -38,6 +40,38 @@ public class ShellSorterTest extends SorterTest {
             shellSorter.sort(Comparator.<Integer>naturalOrder(), original, sequence1);
             shellSorter.sort(Comparator.<Integer>naturalOrder(), original, sequence2);
         }
+
+    @Test
+    public void testStable() {
+
+        List<FullName> original = Arrays.asList(new FullName("Paula", "Alonso"), new FullName("Diego", "Diaz"),
+                new FullName("Diego", "Alonso"), new FullName("Paula", "Abed"));
+
+        final List<FullName> copy = new ArrayList<>(original);
+        final SorterProvider provider = new SorterProviderImpl();
+        final Sorter shellSorter = provider.getSorterForType(SorterType.SHELL);
+        shellSorter.sort(new Comparator<FullName>() {
+            @Override
+            public int compare(FullName name1, FullName name2) {
+                return name1.getFirstname().compareTo(name2.getFirstname());
+            }
+        }, copy);
+
+        // Sort original with java collections
+        Collections.sort(original, new Comparator<FullName>() {
+            @Override
+            public int compare(FullName name1, FullName name2) {
+                return name1.getFirstname().compareTo(name2.getFirstname());
+            }
+        });
+        ;
+
+
+        for (FullName name : copy) {
+            System.out.println(name.getFirstname() + " " + name.getLastname());
+        }
+
+    }
 
     @Test
     public void testRandomSequences1000(){
