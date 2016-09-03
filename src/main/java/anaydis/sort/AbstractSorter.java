@@ -102,7 +102,7 @@ abstract class AbstractSorter<T> implements Sorter, ObservableSorter{
     public void removeSorterListener(SorterListener listener){
         listeners.remove(listener);
     }
-
+    public void removeLastSorterListener(){listeners.remove(listeners.size()-1);}
     public List<SorterListener> getListeners(){
         return listeners;
     }
