@@ -20,7 +20,9 @@ public class SorterProviderImpl implements SorterProvider {
         sorters.put(SorterType.BUBBLE, new BubbleSorter());
         sorters.put(SorterType.SHELL, new ShellSorter());
         sorters.put(H, new HSorter(H));
-        sorters.put(SorterType.QUICK, new QuickSorter());
+        sorters.put(SorterType.QUICK, new RecursiveQuickSorter());
+        sorters.put(SorterType.QUICK_NON_RECURSIVE, new NonRecursiveQuickSorter());
+        sorters.put(SorterType.QUICK_CUT, new CutOffQuickSorter());
     }
 
     @NotNull

@@ -1,5 +1,6 @@
 package anaydis.sort;
 
+import com.sun.org.apache.xerces.internal.util.IntStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
@@ -8,39 +9,29 @@ import java.util.List;
 /**
  * Created by isabel on 8/26/16.
  */
-public class QuickSorter extends AbstractSorter {
-    public QuickSorter() {
-        super(SorterType.QUICK);
+public abstract class QuickSorter extends AbstractSorter {
+    public QuickSorter(SorterType type) {
+        super(type);
     }
 
-    @Override
-    public<T> void sort(@NotNull Comparator<T> comparator, @NotNull List<T> list) {
-    quicksort(comparator, list, 0, list.size()-1);
-    }
 
-    private<T> void quicksort(Comparator<T> comparator, List<T> list, int left, int right) {
 
-        T pivot = list.get(left+ (right-left)/2);
-        int i = left;
-        int j = right;
-        T aux;
 
-        while (i <= j) {
-            while (comparator.compare(list.get(i), pivot) < 0) i++;
-            while (comparator.compare(list.get(j), pivot) > 0) j--;
-            if (i <= j) {
-                aux = list.get(i);
-                list.set(i, list.set(j, aux));
-                i++;
-                j--;
-            }
+
+
+    protected <T> int partition(List<T> list, int lo, int hi, Comparator<T> comparator) {
+        int i = lo - 1;
+        int j = hi;
+        while(true) {
+            while(greater(list.get(hi), list.get(++i ), comparator)); //find item left to swap
+                if (i == hi) break;
+            while(greater(list.get(j), list.get(hi), comparator )); //find item right to swap
+                if (j == lo) break;
+            if (i >= j) break; //check if pointers cross
+            swap(list, i, j); //swap
         }
-        //list.set(left, list.set(j, pivot));
-        if (left < j)
-            quicksort(comparator, list, left, j);
-
-        if (i < right)
-            quicksort(comparator, list, i, right);
+        swap(list, i, hi); //swap with partitioning item
+        return i; //return index of item now known to be in place
     }
 }
 

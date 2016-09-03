@@ -7,7 +7,7 @@ import org.junit.Test;
 /**
  * Created by isabel on 8/27/16.
  */
-public class QuickSorterTest extends SorterTest {
+public class RecursiveQuickSorterTest extends SorterTest {
     @Test
     public void testIntegerSort10(){
         testSorter(new IntegerDataSetGenerator(), SorterType.QUICK, 10);
@@ -20,4 +20,5 @@ public class QuickSorterTest extends SorterTest {
     public void testStringSort100(){
         testSorter(new StringDataSetGenerator(), SorterType.QUICK, 100);
     }
+
 }
