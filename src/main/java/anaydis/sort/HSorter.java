@@ -24,7 +24,7 @@ import java.util.List;
         initListeners();
         for (int i = h; i < n; i++) {
             for (int j = i-h; j >= 0; j-=h) {
-                if (greater(list.get(j), list.get(j+h), comparator) && !list.get(j).equals(list.get(j+h))) {
+                if (greater(list.get(j), list.get(j+h), comparator) && !equals(comparator, list, j, j+h)) {
                     swap(list, j, j+h);
                 } else {
                     break;

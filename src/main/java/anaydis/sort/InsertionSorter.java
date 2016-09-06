@@ -17,17 +17,7 @@ public class InsertionSorter extends AbstractSorter {
     @Override
     public <T> void sort(@NotNull Comparator<T> comparator, @NotNull List<T> list) {
         initListeners();
-        int n = list.size();
-        for (int i = 0; i < n; i++) {
-            for (int j = i; j > 0; j--) {
-                if (!greater(list.get(j), list.get(j-1), comparator) && !list.get(j).equals(list.get(j-1))) {
-                    swap(list, j, j-1);
-                } else {
-                    break;
-                }
-            }
-        }
-        finishListeners();
+        sort(comparator, list, 0, list.size()-1);
     }
 
 
@@ -42,7 +32,7 @@ public class InsertionSorter extends AbstractSorter {
                 }
             }
         }
-        //finishListeners();
+        finishListeners();
     }
 
 }

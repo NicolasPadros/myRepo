@@ -18,7 +18,7 @@ abstract class AbstractSorter<T> implements Sorter, ObservableSorter{
     private SorterType type;
 
     protected AbstractSorter(@NotNull final SorterType type) {
-        listeners = new ArrayList<>();
+        listeners = new ArrayList<SorterListener>();
         this.type = type;
         addSorterListener(new CountSorterListener());
     }
@@ -44,24 +44,29 @@ abstract class AbstractSorter<T> implements Sorter, ObservableSorter{
         //list.set(i, list.set(i, list.get(j)));
 
         T t = list.get(i);
+        dataTypeListeners(t.getClass());
         list.set(i, list.get(j));
         list.set(j, t);
 
     }
 
-    <T> boolean equals(Comparator<T> c, List<T> list, int i, int j) {
+    protected<T> boolean equals(Comparator<T> c, List<T> list, int i, int j) {
         int diff=c.compare(list.get(i),list.get(j));
         equalListeners(i, j);
         return diff == 0;
     }
+    protected<T> boolean equals(Comparator<T> c, T object, T object2) {
+        int diff=c.compare(object, object2);
+        return diff == 0;
+    }
 
-    private void equalListeners(int i, int j) {
+    protected void equalListeners(int i, int j) {
         for(SorterListener listener: listeners){
             listener.equals(i,j);
         }
     }
 
-    <T> void copy(List<T> source, int i, int j, List<T> aux, boolean copyToAux){
+    protected<T> void copy(List<T> source, int i, int j, List<T> aux, boolean copyToAux){
         if(copyToAux)
             aux.add(j,source.get(i));
         else
@@ -102,7 +107,7 @@ abstract class AbstractSorter<T> implements Sorter, ObservableSorter{
         }
     }
 
-    private void dataTypeListeners(Class dataType) {
+    protected void dataTypeListeners(Class dataType) {
         for(SorterListener listener: listeners) {
             if (listener.getClass().equals(CountSorterListener.class)) {
                 ((CountSorterListener) listener).setDataType(dataType);

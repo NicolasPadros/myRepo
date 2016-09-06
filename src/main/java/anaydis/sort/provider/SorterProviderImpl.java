@@ -26,6 +26,7 @@ public class SorterProviderImpl implements SorterProvider {
         sorters.put(SorterType.QUICK_MED_OF_THREE, new MedianOfThreeQuickSorter());
         sorters.put(SorterType.QUICK_THREE_PARTITION, new ThreeWayPartioningQuickSorter());
         sorters.put(SorterType.MERGE, new TopDownMergeSort());
+        sorters.put(SorterType.MERGE_BOTTOM_UP, new BottomUpMergeSort());
     }
 
     @NotNull

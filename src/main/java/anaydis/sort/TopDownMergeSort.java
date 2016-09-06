@@ -1,7 +1,10 @@
 package anaydis.sort;
 
+import anaydis.sort.gui.SorterListener;
+import anaydis.sort.statistics.CountSorterListener;
 import org.jetbrains.annotations.NotNull;
 
+import javax.xml.bind.Marshaller;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -9,7 +12,7 @@ import java.util.List;
 /**
  * Created by isabel on 9/4/16.
  */
-public class TopDownMergeSort extends AbstractSorter {
+public class TopDownMergeSort extends MergeSorter {
     public TopDownMergeSort() {
         super(SorterType.MERGE);
     }
@@ -17,19 +20,21 @@ public class TopDownMergeSort extends AbstractSorter {
     @Override
     public <T> void sort(@NotNull Comparator<T> comparator, @NotNull List<T> list) {
         initListeners();
+        lengthListeners(list.size());
         List<T> aux = new ArrayList<T>();
-        sort(comparator, list, 0, list.size() - 1);
+        sort(comparator, list, 0, list.size() - 1, aux);
         finishListeners();
     }
 
-    private <T> void sort(Comparator<T> comparator, List<T> list, int left, int right) {
+    private <T> void sort(Comparator<T> comparator, List<T> list, int left, int right, List<T> aux) {
         if (left < right) {
             int mid = (left + right) / 2;
-            sort(comparator, list, left, mid);
-            sort(comparator, list, mid + 1, right);
-            merge(comparator, list, left, mid, right);
+            sort(comparator, list, left, mid, aux);
+            sort(comparator, list, mid + 1, right, aux);
+            merge(comparator, list, left, mid, right, aux);
         }
     }
+
 
     protected <T> void merge(@NotNull Comparator<T> comparator, @NotNull List<T> list, int left, int mid, int right){
         int i = left;
@@ -46,8 +51,9 @@ public class TopDownMergeSort extends AbstractSorter {
             else if(greater(pivotList.get(i), pivotList.get(j), comparator)) list.set(k, pivotList.get(j++));
             else list.set(k, pivotList.get(i++));
         }
-
     }
+
+
 
     private<T> List<T> merge(List<T> listA, List<T> listB, Comparator<T> comparator) {
         List<T> result = new ArrayList<T>(listA.size()+ listB.size() -2);

@@ -21,34 +21,49 @@ public class CutOffQuickSorterTest extends SorterTest {
         testSorter(new IntegerDataSetGenerator(), SorterType.QUICK_CUT, 10);
     }
 
-    /*
+
     @Test
     public void testBestM() {
-        for (int i = 0; i < 9999; i++) {
-            setM(i);
-            final SorterProvider provider = new SorterProviderImpl();
-            final IntegerDataSetGenerator generator = new IntegerDataSetGenerator();
-            final List<Integer> original = generator.createRandom(10000);
-            final List<Integer> copy = new ArrayList<Integer>(original);
-
-
-            final Sorter quickSorter = provider.getSorterForType(SorterType.QUICK_CUT);
-            quickSorter.sort(Comparator.<Integer>naturalOrder(), copy);
+        CutOffQuickSorter quick = new CutOffQuickSorter();
+        IntegerDataSetGenerator generator = new IntegerDataSetGenerator();
+        for (int j = 0; j < 10; j++) {
+            long recordTime = 1000000000;
+            int index = 0;
+            for (int i = 5; i <= 25; i++) {
+                List<Integer> list = generator.createRandom(100000);
+                setM(i);
+                long time = System.nanoTime();
+                quick.sort(Comparator.naturalOrder(), list);
+                time = (System.nanoTime() - time);
+                //System.out.println("N=" + 1000 + " M= " + i + " " + time + " ms");
+                if (time < recordTime) {
+                    recordTime = time;
+                    index = i;
+                }
+            }
+            System.out.println("For N: " + 100000 + ", best M= " + index + " with " + recordTime + " ms");
 
         }
     }
-    */
-
-
     @Test
-    public void testIntegerSort1000() {
-        setM(10);
-        testSorter(new IntegerDataSetGenerator(), SorterType.QUICK_CUT, 1000);
+    public void testIntegerSort12500(){
+        setM(25);
+        testSorter(new IntegerDataSetGenerator(),SorterType.QUICK_CUT, 12500);
+    }
+    @Test
+    public void testIntegerSort25000(){
+        setM(25);
+        testSorter(new IntegerDataSetGenerator(), SorterType.QUICK_CUT, 25000);
+    }
+    @Test
+    public void testIntegerSort50000(){
+        setM(25);
+        testSorter(new IntegerDataSetGenerator(), SorterType.QUICK_CUT, 50000);
+    }
+    @Test
+    public void testIntegerSort100000(){
+        setM(25);
+        testSorter(new IntegerDataSetGenerator(), SorterType.QUICK_CUT, 100000);
     }
 
-    @Test
-    public void testStringSort100() {
-        setM(10);
-        testSorter(new StringDataSetGenerator(), SorterType.QUICK_CUT, 100);
-    }
 }

@@ -57,16 +57,6 @@ public class ShellSorterTest extends SorterTest {
             }
         }, copy);
 
-        // Sort original with java collections
-        Collections.sort(original, new Comparator<FullName>() {
-            @Override
-            public int compare(FullName name1, FullName name2) {
-                return name1.getFirstname().compareTo(name2.getFirstname());
-            }
-        });
-        ;
-
-
         for (FullName name : copy) {
             System.out.println(name.getFirstname() + " " + name.getLastname());
         }
