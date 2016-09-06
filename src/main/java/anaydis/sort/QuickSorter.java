@@ -15,23 +15,5 @@ public abstract class QuickSorter extends AbstractSorter {
     }
 
 
-
-
-
-
-    protected <T> int partition(List<T> list, int lo, int hi, Comparator<T> comparator) {
-        int i = lo - 1;
-        int j = hi;
-        while(true) {
-            while(greater(list.get(hi), list.get(++i ), comparator)); //find item left to swap
-                if (i == hi) break;
-            while(greater(list.get(j), list.get(hi), comparator )); //find item right to swap
-                if (j == lo) break;
-            if (i >= j) break; //check if pointers cross
-            swap(list, i, j); //swap
-        }
-        swap(list, i, hi); //swap with partitioning item
-        return i; //return index of item now known to be in place
-    }
 }
 

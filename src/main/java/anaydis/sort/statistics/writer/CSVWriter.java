@@ -30,7 +30,10 @@ public class CSVWriter {
 
     public void writeString(String toWrite){
         try {
-            writer.write(toWrite);
+            if(toWrite == null) writer.write("null");
+            else {
+                writer.write(toWrite);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

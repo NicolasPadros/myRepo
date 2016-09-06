@@ -13,6 +13,7 @@ import java.util.List;
  * Abstract sorter: all sorter implementations should subclass this class.
  */
 abstract class AbstractSorter<T> implements Sorter, ObservableSorter{
+
     protected List<SorterListener> listeners;
     private SorterType type;
 
@@ -35,6 +36,7 @@ abstract class AbstractSorter<T> implements Sorter, ObservableSorter{
         return comp.compare(v,w) > 0;
     }
 
+
     protected void swap(List<T> list, int i, int j) {
         lengthListeners(list.size());
         swapListeners(i, j);
@@ -45,6 +47,31 @@ abstract class AbstractSorter<T> implements Sorter, ObservableSorter{
         list.set(i, list.get(j));
         list.set(j, t);
 
+    }
+
+    <T> boolean equals(Comparator<T> c, List<T> list, int i, int j) {
+        int diff=c.compare(list.get(i),list.get(j));
+        equalListeners(i, j);
+        return diff == 0;
+    }
+
+    private void equalListeners(int i, int j) {
+        for(SorterListener listener: listeners){
+            listener.equals(i,j);
+        }
+    }
+
+    <T> void copy(List<T> source, int i, int j, List<T> aux, boolean copyToAux){
+        if(copyToAux)
+            aux.add(j,source.get(i));
+        else
+            aux.set(j,source.get(i));
+    }
+
+    protected void copyListeners(int i, int j, boolean copyToAux){
+        for(SorterListener listener: listeners){
+            listener.copy(i,j,copyToAux);
+        }
     }
 
     protected void greaterListeners(){

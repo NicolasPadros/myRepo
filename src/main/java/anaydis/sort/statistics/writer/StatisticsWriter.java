@@ -40,6 +40,7 @@ public class StatisticsWriter {
 
         writer.writeString(getDateAndTime());
         writer.addComma();
+
         writer.writeString(recordToWrite.getSorterType().toString());
         writer.addComma();
         writer.writeString(recordToWrite.getDataType().toString());

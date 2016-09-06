@@ -14,13 +14,17 @@ public class CountSorterListener implements SorterListener {
     private long initialTime;
     private long sortTime;
     private int length;
+    private int equals;
     private SorterType type;
     private Class dataType;
+    private int copies;
 
 
     public CountSorterListener() {
         swaps = 0;
         greaters = 0;
+        equals = 0;
+        copies = 0;
     }
 
     public void init(){
@@ -40,12 +44,12 @@ public class CountSorterListener implements SorterListener {
 
     @Override
     public void copy(int from, int to, boolean copyToAux) {
-
+        copies++;
     }
 
     @Override
     public void equals(int i, int j) {
-
+        equals++;
     }
 
     @Override
