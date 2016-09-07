@@ -9,20 +9,18 @@ import org.junit.Test;
  */
 public class NonRecursiveQuickSorterTest extends SorterTest {
     @Test
-    public void testIntegerSort12500(){
-        testSorter(new IntegerDataSetGenerator(),SorterType.QUICK_NON_RECURSIVE, 12500);
+    public void testIntegerSort10() {
+        testSorter(new IntegerDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 100);
     }
+
     @Test
-    public void testIntegerSort25000(){
-        testSorter(new IntegerDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 25000);
+    public void testIntegerSort1000() {
+        testSorter(new IntegerDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 1000);
     }
+
     @Test
-    public void testIntegerSort50000(){
-        testSorter(new IntegerDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 50000);
-    }
-    @Test
-    public void testIntegerSort100000(){
-        testSorter(new IntegerDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 100000);
+    public void testStringSort100() {
+        testSorter(new StringDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 100);
     }
 
 }

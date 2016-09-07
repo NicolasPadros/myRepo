@@ -14,22 +14,19 @@ import java.util.*;
  */
 public class RecursiveQuickSorterTest extends SorterTest {
     @Test
-    public void testIntegerSort12500(){
-        testSorter(new IntegerDataSetGenerator(),SorterType.QUICK, 12500);
-    }
-    @Test
-    public void testIntegerSort25000(){
-        testSorter(new IntegerDataSetGenerator(), SorterType.QUICK, 25000);
-    }
-    @Test
-    public void testIntegerSort50000(){
-        testSorter(new IntegerDataSetGenerator(), SorterType.QUICK, 50000);
-    }
-    @Test
-    public void testIntegerSort100000(){
-        testSorter(new IntegerDataSetGenerator(), SorterType.QUICK, 100000);
+    public void testIntegerSort10() {
+        testSorter(new IntegerDataSetGenerator(), SorterType.QUICK, 100);
     }
 
+    @Test
+    public void testIntegerSort1000() {
+        testSorter(new IntegerDataSetGenerator(), SorterType.QUICK, 1000);
+    }
+
+    @Test
+    public void testStringSort100() {
+        testSorter(new StringDataSetGenerator(), SorterType.QUICK, 100);
+    }
 
     @Test
     public void testStable() {
