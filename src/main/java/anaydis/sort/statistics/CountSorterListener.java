@@ -39,7 +39,7 @@ public class CountSorterListener implements SorterListener {
 
     @Override
     public void box(int from, int to) {
-
+        System.out.println("Boxing from " + from + " to " + to);
     }
 
     @Override

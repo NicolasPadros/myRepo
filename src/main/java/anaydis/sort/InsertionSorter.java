@@ -18,6 +18,7 @@ public class InsertionSorter extends AbstractSorter {
     public <T> void sort(@NotNull Comparator<T> comparator, @NotNull List<T> list) {
         initListeners();
         sort(comparator, list, 0, list.size()-1);
+        boxListeners(0, list.size()-1);
     }
 
 

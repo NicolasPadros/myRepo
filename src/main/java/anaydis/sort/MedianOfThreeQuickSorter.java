@@ -46,41 +46,7 @@ public class MedianOfThreeQuickSorter extends QuickSorter {
 
     public static void setM(int N){ M = N;}
 
-    private<T>  void quickSort(Comparator<T> comparator, List<T> list, int low, int high ) {
-        //if( low + M > high )
-          //  insertion.sort( comparator, list, low, high);
-        //else {
-            // Sort low, middle, high
-            int middle = ( low + high ) / 2;
-            if(greater(list.get(low), list.get(middle), comparator))
-                swap( list, low, middle );
-            if( greater(list.get(low), list.get(high), comparator))
-                swap(list, low, high );
-            if(greater(list.get(middle), list.get(high), comparator))
-                swap(list, middle, high );
 
-            // Place pivot at position high - 1
-            swap( list, middle, high - 1 );
-            T pivot = list.get(high - 1);
-
-            // Begin partitioning
-            int i, j;
-            for( i = low, j = high - 1; ; ) {
-                while( greater(pivot, list.get(++i), comparator))
-                    ;
-                while( greater(list.get(--j), pivot, comparator))
-                    ;
-                if( i >= j )
-                    break;
-                swap(list, i, j );
-            }
-
-            // Restore pivot
-            swap(list, i, high - 1 );
-
-            quickSort(comparator, list, low, i - 1 );    // Sort small elements
-            quickSort(comparator, list, i + 1, high);   // Sort large elements
-        }
     }
 
 //}

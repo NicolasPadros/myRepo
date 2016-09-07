@@ -1,4 +1,4 @@
-package anaydis.sort.statistics;
+package anaydis.sort.practice;
 
 import anaydis.sort.CutOffQuickSorter;
 import anaydis.sort.MedianOfThreeQuickSorter;
@@ -7,6 +7,7 @@ import anaydis.sort.SorterType;
 import anaydis.sort.data.IntegerDataSetGenerator;
 import anaydis.sort.provider.SorterProvider;
 import anaydis.sort.provider.SorterProviderImpl;
+import org.junit.Ignore;
 
 import java.util.*;
 
@@ -15,6 +16,7 @@ import static anaydis.sort.CutOffQuickSorter.setM;
 /**
  * Created by FliaPadros on 6/9/2016.
  */
+@Ignore
 public class TP4Analysis {
 
     public static void main(String[] args) {
@@ -22,7 +24,7 @@ public class TP4Analysis {
         testBestQuickSorterMain();
     }
 
-
+    @Ignore
     public static void testBestMain() {
         CutOffQuickSorter quick = new CutOffQuickSorter();
         IntegerDataSetGenerator generator = new IntegerDataSetGenerator();
@@ -48,7 +50,7 @@ public class TP4Analysis {
         }
     }
 
-
+    @org.junit.Ignore
     public static void testBestQuickSorterMain(){
         final SorterProvider provider = new SorterProviderImpl();
         final IntegerDataSetGenerator generator = new IntegerDataSetGenerator();

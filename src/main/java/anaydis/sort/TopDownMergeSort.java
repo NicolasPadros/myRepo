@@ -36,44 +36,7 @@ public class TopDownMergeSort extends MergeSorter {
     }
 
 
-    protected <T> void merge(@NotNull Comparator<T> comparator, @NotNull List<T> list, int left, int mid, int right){
-        int i = left;
-        int j = mid+1;
-        List<T> pivotList = new ArrayList<T>();
 
-        for(int k = left; k<= right; k++){
-            pivotList.set(k, list.get(k));
-        }
-
-        for(int k=left; k<=right; k++){
-            if( i>mid) list.set(k, pivotList.get(j++));
-            else if(j>right) list.set(k, pivotList.get(i++));
-            else if(greater(pivotList.get(i), pivotList.get(j), comparator)) list.set(k, pivotList.get(j++));
-            else list.set(k, pivotList.get(i++));
-        }
-    }
-
-
-
-    private<T> List<T> merge(List<T> listA, List<T> listB, Comparator<T> comparator) {
-        List<T> result = new ArrayList<T>(listA.size()+ listB.size() -2);
-        for (int i = 0, j = 0, k = 0; k < result.size(); k++) {
-            if(i >= listA.size()) {
-                result.set(k, listB.get(i++));
-            }
-            else if (j >= listB.size()) {
-                result.set(k, listA.get(j++));
-            }
-            else {
-                if (greater(listB.get(j), listA.get(i), comparator)){
-                    result.set(k, listA.get(i++));
-                } else{
-                    result.set(k, listB.get(j++));
-                }
-            }
-        }
-        return result;
-    }
 
 
 

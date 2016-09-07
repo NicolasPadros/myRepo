@@ -13,10 +13,6 @@ public class RecursiveQuickSorter extends QuickSorter{
         super(SorterType.QUICK);
     }
 
-    public RecursiveQuickSorter(SorterType quickCut) {
-        super(quickCut);
-    }
-
     @Override
     public <T> void sort(@NotNull Comparator<T> comparator, @NotNull List<T> list) {
         initListeners();

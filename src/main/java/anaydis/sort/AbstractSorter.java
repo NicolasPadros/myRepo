@@ -55,10 +55,7 @@ abstract class AbstractSorter<T> implements Sorter, ObservableSorter{
         equalListeners(i, j);
         return diff == 0;
     }
-    protected<T> boolean equals(Comparator<T> c, T object, T object2) {
-        int diff=c.compare(object, object2);
-        return diff == 0;
-    }
+
 
     protected void equalListeners(int i, int j) {
         for(SorterListener listener: listeners){
@@ -67,15 +64,21 @@ abstract class AbstractSorter<T> implements Sorter, ObservableSorter{
     }
 
     protected<T> void copy(List<T> source, int i, int j, List<T> aux, boolean copyToAux){
+        copyListeners(i, j, copyToAux);
         if(copyToAux)
             aux.add(j,source.get(i));
         else
             aux.set(j,source.get(i));
     }
 
-    protected void copyListeners(int i, int j, boolean copyToAux){
+    protected void copyListeners(int i, int j,boolean copyToAux){
         for(SorterListener listener: listeners){
             listener.copy(i,j,copyToAux);
+        }
+    }
+    protected void boxListeners(int i, int j){
+        for(SorterListener listener: listeners){
+            listener.box(i,j);
         }
     }
 
@@ -134,7 +137,6 @@ abstract class AbstractSorter<T> implements Sorter, ObservableSorter{
     public void removeSorterListener(SorterListener listener){
         listeners.remove(listener);
     }
-    public void removeLastSorterListener(){listeners.remove(listeners.size()-1);}
     public List<SorterListener> getListeners(){
         return listeners;
     }
