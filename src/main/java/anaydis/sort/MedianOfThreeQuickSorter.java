@@ -9,6 +9,7 @@ import java.util.List;
  * Created by isabel on 9/2/16.
  */
 public class MedianOfThreeQuickSorter extends QuickSorter {
+
     private  static int M;
     private InsertionSorter insertion;
 
@@ -27,7 +28,7 @@ public class MedianOfThreeQuickSorter extends QuickSorter {
 
     private<T> void hybridsort(Comparator<T> comparator, List<T> list, int lo, int hi) {
         initListeners();
-        quickSort(comparator, list, lo, hi);
+        quicksort(comparator, list, lo, hi);
         insertion.sort(comparator, list, lo, hi);
         finishListeners();
     }
@@ -45,9 +46,9 @@ public class MedianOfThreeQuickSorter extends QuickSorter {
     public static void setM(int N){ M = N;}
 
     private<T>  void quickSort(Comparator<T> comparator, List<T> list, int low, int high ) {
-        if( low + M > high )
-            insertion.sort( comparator, list, low, high);
-        else {
+        //if( low + M > high )
+          //  insertion.sort( comparator, list, low, high);
+        //else {
             // Sort low, middle, high
             int middle = ( low + high ) / 2;
             if(greater(list.get(low), list.get(middle), comparator))
@@ -81,4 +82,4 @@ public class MedianOfThreeQuickSorter extends QuickSorter {
         }
     }
 
-}
+//}
