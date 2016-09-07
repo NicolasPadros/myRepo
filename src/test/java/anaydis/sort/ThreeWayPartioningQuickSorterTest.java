@@ -16,7 +16,7 @@ public class ThreeWayPartioningQuickSorterTest extends SorterTest {
 
 
     @Test
-    public void testStringSort10() {
-        testSorter(new StringDataSetGenerator(), SorterType.QUICK_THREE_PARTITION, 10);
+    public void testStringSort100() {
+        testSorter(new StringDataSetGenerator(), SorterType.QUICK_THREE_PARTITION, 100);
     }
 }
