@@ -33,7 +33,7 @@ public class InsertionSorter extends AbstractSorter {
                 }
             }
         }
-        //finishListeners();
+        finishListeners();
     }
 
 }
