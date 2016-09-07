@@ -7,7 +7,6 @@ import anaydis.sort.SorterType;
 import anaydis.sort.data.IntegerDataSetGenerator;
 import anaydis.sort.provider.SorterProvider;
 import anaydis.sort.provider.SorterProviderImpl;
-import org.junit.Ignore;
 
 import java.util.*;
 

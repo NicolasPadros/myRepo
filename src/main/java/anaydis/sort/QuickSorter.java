@@ -3,7 +3,6 @@ package anaydis.sort;
 /**
  * Created by FliaPadros on 6/9/2016.
  */
-import com.sun.org.apache.xerces.internal.util.IntStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
