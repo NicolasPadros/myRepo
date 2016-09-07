@@ -14,8 +14,8 @@ public class MedianOfThreeQuickSorterTest extends SorterTest {
 
     @Test
     public void testIntegerSort10() {
-        setM(25);
-        testSorter(new IntegerDataSetGenerator(), SorterType.QUICK_MED_OF_THREE, 100);
+        //setM(25);
+        testSorter(new IntegerDataSetGenerator(), SorterType.QUICK_MED_OF_THREE, 10);
     }
 
 

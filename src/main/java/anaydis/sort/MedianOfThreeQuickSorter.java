@@ -36,6 +36,7 @@ public class MedianOfThreeQuickSorter extends QuickSorter {
     public MedianOfThreeQuickSorter() {
         super(SorterType.QUICK_MED_OF_THREE);
         insertion = new InsertionSorter();
+        M = 5;
     }
 
     @Override
