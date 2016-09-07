@@ -1,10 +1,10 @@
 package anaydis.sort;
 
-import com.sun.org.apache.xerces.internal.util.IntStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by isabel on 9/2/16.
@@ -18,7 +18,7 @@ public class NonRecursiveQuickSorter extends QuickSorter{
 
     private<T> void sort(@NotNull Comparator<T> comparator, @NotNull List<T> list, int left, int right) {
 
-            IntStack S = new IntStack();
+            Stack<Integer> S = new Stack<Integer>();
             S.push(left);
             S.push(right);
             while (S.size() != 0) {
