@@ -76,10 +76,10 @@ public class TP4Analysis {
             cutOff.sort(Comparator.<Integer>naturalOrder(), original);
             System.out.println("CutOff finished");
             original = generator.createRandom(sizes[i]);
-            //median.sort(Comparator.<Integer>naturalOrder(), original);
+            median.sort(Comparator.<Integer>naturalOrder(), original);
             System.out.println("Median finished");
             original = generator.createRandom(sizes[i]);
-            //threeWay.sort(Comparator.<Integer>naturalOrder(), original);
+            threeWay.sort(Comparator.<Integer>naturalOrder(), original);
             System.out.println("3Way finished");
         }
 

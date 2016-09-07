@@ -22,7 +22,7 @@ public class MedianOfThreeQuickSorterTest extends SorterTest {
     @Test
     public void testStringSort100() {
         setM(25);
-        testSorter(new StringDataSetGenerator(), SorterType.QUICK_MED_OF_THREE, 10);
+        testSorter(new StringDataSetGenerator(), SorterType.QUICK_MED_OF_THREE, 100);
     }
 
 
