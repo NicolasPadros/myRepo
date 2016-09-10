@@ -1,10 +1,7 @@
 package anaydis.sort;
 
-import anaydis.sort.gui.SorterListener;
-import anaydis.sort.statistics.CountSorterListener;
 import org.jetbrains.annotations.NotNull;
 
-import javax.xml.bind.Marshaller;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;

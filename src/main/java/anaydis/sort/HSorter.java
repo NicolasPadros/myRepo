@@ -1,7 +1,5 @@
 package anaydis.sort;
 
-import anaydis.sort.statistics.CountSorterListener;
-
 import java.util.Comparator;
 import java.util.List;
 

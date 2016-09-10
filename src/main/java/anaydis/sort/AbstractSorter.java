@@ -1,8 +1,8 @@
 package anaydis.sort;
 
-import anaydis.sort.statistics.CountSorterListener;
 import anaydis.sort.gui.ObservableSorter;
 import anaydis.sort.gui.SorterListener;
+import anaydis.sort.statistics.CountSorterListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
