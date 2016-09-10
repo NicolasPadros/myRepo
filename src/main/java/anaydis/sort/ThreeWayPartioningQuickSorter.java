@@ -41,7 +41,7 @@ public class ThreeWayPartioningQuickSorter extends QuickSorter {
             //int cmp = comparator.compare(list.get(i), v);
             if(cmp < 0) swap(list, lt++, i++);
             else if (cmp > 0) swap(list, i, gt--);
-            else i++;
+
         } // Now a[low..lt-1] < v = a[lt..gt] < a[gt+1..high].
         sort(comparator, list, low, lt - 1);
         sort(comparator, list, gt + 1, high);
