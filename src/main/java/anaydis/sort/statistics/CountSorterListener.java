@@ -3,7 +3,7 @@ package anaydis.sort.statistics;
 import anaydis.sort.SorterType;
 import anaydis.sort.gui.SorterListener;
 
-import static anaydis.sort.statistics.writer.StatisticsWriter.writeRecord;
+import static anaydis.sort.practice.writer.StatisticsWriter.writeRecord;
 
 /**
  * Created by isabel on 8/23/16.
