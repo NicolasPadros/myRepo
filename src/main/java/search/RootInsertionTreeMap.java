@@ -2,10 +2,17 @@ package search;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Comparator;
+
 /**
  * Created by isabel on 9/10/16.
  */
-public class RootInsertionTreeMap<K extends Comparable, V> extends TreeMap<K, V> {
+public class RootInsertionTreeMap<K, V> extends TreeMap<K, V> {
+
+    public RootInsertionTreeMap(Comparator<K> comparator) {
+        super(comparator);
+    }
+
     @Override
     public V put(@NotNull K key, V value) {
         head = rootPut(head, key, value);
@@ -17,7 +24,7 @@ public class RootInsertionTreeMap<K extends Comparable, V> extends TreeMap<K, V>
             size++;
             return new Node<K, V>(key, value);
         } else{
-            int cmp = key.compareTo(node.key);
+            int cmp = comparator.compare(key, node.key);
             if(cmp < 0) {
                 node.left = rootPut(node.left, key, value);
                 return rotateRight(node);

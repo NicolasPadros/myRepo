@@ -1,9 +1,12 @@
 package search.practice.statistics;
 
+import anaydis.search.Map;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -11,13 +14,20 @@ import java.util.List;
  */
 public class FileAnalyzer {
 
-        private static File archivo = null;
-        private static FileReader fr = null;
-        private static BufferedReader br = null;
-        private List<String> dictionary;
+    private File archivo = null;
+    private FileReader fr = null;
+    private BufferedReader br = null;
+    private Map<String, Integer> map;
+    private int fails;
+    private int success;
+    private long initialTime;
+    private long searchingTime;
 
-    public FileAnalyzer() {
-        dictionary = new ArrayList<String>();
+
+    public FileAnalyzer(Map<String, Integer> map) {
+        this.map = map;
+        fails = 0;
+        success = 0;
     }
 
     public void analyze(String file, int length) {
@@ -28,8 +38,7 @@ public class FileAnalyzer {
 
                 String s;
                 for(int i = 0; i < length; i++) {
-                    s = br.readLine();
-                    aux(s);
+                    if((s = br.readLine()) != null) aux(s);
                 }
 
             }
@@ -46,22 +55,64 @@ public class FileAnalyzer {
                 }
 
             }
+
         }
 
-        private void aux(String linea) {
+    public void search(String file, int length) {
+        try {
+            File file2 = new File(file);
+            fr = new FileReader (file2);
+            br = new BufferedReader(fr);
+
+            String s;
+            long initialTime = System.currentTimeMillis();
+            for(int i = 0; i < length; i++) {
+                if((s = br.readLine()) != null) search(s);
+            }
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }finally{
+
+            try{
+                if( null != fr ){
+                    fr.close();
+                }
+            }catch (Exception e2){
+                e2.printStackTrace();
+            }
+
+        }
+
+    }
+
+    private void search(String s) {
+        if(s.equals("")) return;
+        String[] words = s.split("\\s+");
+        for(String m : words){
+            if(!map.containsKey(m)) fails++;
+            else success++;
+        }
+        searchingTime = System.currentTimeMillis() - initialTime;
+    }
+
+    private void aux(String linea) {
             if(linea.equals("")) return;
             String[] words = remove(linea).replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
-            System.out.println(linea);
-            addDictionary(words);
+            //System.out.println(linea);
+            addLine(words);
         }
 
-    private void addDictionary(String[] words) {
-        for(String m : words) dictionary.add(m);
+    private void addLine(String[] words) {
+        for (String m : words) {
+            if (map.containsKey(m)) map.put(m, map.get(m) + 1);
+            else {
+                map.put(m, 1);
+            }
+        }
     }
 
-    public void printDictionary(){
-        for(String m : dictionary) System.out.println(m);
-    }
 
     private static String remove(String input) {
         String original = "áàäéèëíìïóòöúùuñÁÀÄÉÈËÍÌÏÓÒÖÚÙÜÑçÇ";
@@ -75,4 +126,22 @@ public class FileAnalyzer {
     }
 
 
+    public ArrayList<String> getDictionary() {
+        Iterator<String> iterator= map.keys();
+        ArrayList<String> keys = new ArrayList<>();
+        while(iterator.hasNext()) keys.add(iterator.next());
+        return keys;
+    }
+
+    public long getSearchingTime() {
+        return searchingTime;
+    }
+
+    public int getFails() {
+        return fails;
+    }
+
+    public int getSuccess() {
+        return success;
+    }
 }

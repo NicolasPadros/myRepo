@@ -9,13 +9,15 @@ import java.util.Iterator;
 /**
  * Created by isabel on 9/10/16.
  */
-public class TreeMap<K extends Comparable, V> implements Map<K, V> {
+public class TreeMap<K, V> implements Map<K, V> {
     protected Node<K, V> head;
     protected int size;
+    protected Comparator<K> comparator;
 
 
-    public TreeMap() {
+    public TreeMap(Comparator<K> comparator) {
         size = 0;
+        this.comparator = comparator;
     }
 
     @Override
@@ -28,20 +30,16 @@ public class TreeMap<K extends Comparable, V> implements Map<K, V> {
         return find(head, key) != null;
     }
 
-    @Override
+
+
     public V get(@NotNull K key) {
-        return null;
-    }
-
-
-    public V get(@NotNull K key, Comparator<K> comparator) {
         Node<K, V> node = find(head, key);
         return node.value;
     }
 
     private Node<K,V> find(Node<K, V> node, K key) {
         if (node == null) return null;
-        int cmp = key.compareTo(node.key);
+        int cmp = comparator.compare(key, node.key);
         if(cmp == 0) return node;
         else if(cmp < 0) return find(node.left, key);
         else return find(node.right, key);
@@ -57,7 +55,7 @@ public class TreeMap<K extends Comparable, V> implements Map<K, V> {
         if(node == null){
             return null;
         } else{
-            int cmp = key.compareTo(node.key); //comparator.compare(key, node.key);
+            int cmp = comparator.compare(key, node.key);
             if(cmp < 0) search(node.left, key);
             if(cmp> 0) search(node.right, key);
             else {
@@ -73,7 +71,7 @@ public class TreeMap<K extends Comparable, V> implements Map<K, V> {
             size++;
             return new Node<K, V>(key, value);
         } else{
-            int cmp = key.compareTo(node.key); //comparator.compare(key, node.key);
+            int cmp = comparator.compare(key, node.key);
             if(cmp < 0) node.left = put(node.left, key, value);
             if(cmp> 0) node.right = put(node.right, key, value);
             else {
@@ -90,7 +88,7 @@ public class TreeMap<K extends Comparable, V> implements Map<K, V> {
 
     private Node<K,V> remove(Node<K, V> node, K key) {
         if(node == null) return null;
-        int cmp = key.compareTo(node.key); //comparator.compare(key, node.key)
+        int cmp = comparator.compare(key, node.key);
         if (cmp < 0){
             node.left = remove(node.left, key);
             return node;
