@@ -1,33 +1,25 @@
-package search.practice.statistics;
+package search.practice;
 
 
 import anaydis.search.Map;
-import org.junit.Test;
-import search.ArrayMap;
 import search.BinarySearchMap;
 import search.RandomizedTreeMap;
 import search.TreeMap;
 
+import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Dictionary;
+import java.util.Iterator;
 
 /**
  * Created by isabel on 9/10/16.
  */
 public class QuijoteMain {
     public static void main(String[] args) {
-    /*
-        Map<String, Integer> randomMap = new BinarySearchMap<String, Integer>(10, Comparator.naturalOrder());
-        String[] words = {"el", "nuevo", "el"};
-        for (String m : words) {
-            if (randomMap.containsKey(m)) {
-                randomMap.put(m, randomMap.get(m) + 1);
-            } else {
-                randomMap.put(m, 1);
-            }
-        }
-        */
-        System.out.println((1+2)/2);
+
+
+
+        //Set as a comment to stop it from running
+        //WriterMain();
 
 
         int[] nSizes = {10, 100, 150, 200, 250};
@@ -47,9 +39,7 @@ public class QuijoteMain {
     }
 
     //Writes a document with 200.000 reversed words to be read and sought by the analyzer
-    //Notated as Test to be ran separately from the main() method
-     @Test
-    public  void Writermain() {
+    public static void WriterMain() {
          DictionaryAnalyzer analyzer = new DictionaryAnalyzer();
          analyzer.analyze("/home/isabel/Documents/Repos/npadros/src/main/resources/books/quijote.txt", 200000);
          FileWriter writer = new FileWriter(analyzer.getDictionary());

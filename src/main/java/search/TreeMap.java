@@ -3,6 +3,8 @@ package search;
 import anaydis.search.Map;
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 
@@ -13,7 +15,6 @@ public class TreeMap<K, V> implements Map<K, V> {
     protected Node<K, V> head;
     protected int size;
     protected Comparator<K> comparator;
-
 
     public TreeMap(Comparator<K> comparator) {
         size = 0;
@@ -63,6 +64,20 @@ public class TreeMap<K, V> implements Map<K, V> {
             }
         }
         return null;
+    }
+
+    public ArrayList<K> keySet(){
+        ArrayList<K> list = new ArrayList<K>();
+        inOrder(head, list);
+        return list;
+    }
+
+    private void inOrder(Node<K, V> node, ArrayList<K> list) {
+        if (node != null) {
+            inOrder(node.left, list);
+            list.add(node.key);
+            inOrder(node.right, list);
+        }
     }
 
     protected Node<K,V> put(Node<K, V> node, K key, V value) {
@@ -123,7 +138,7 @@ public class TreeMap<K, V> implements Map<K, V> {
 
     @Override
     public Iterator<K> keys() {
-        return new TreeKeysIterator(head);
+        return new TreeKeysIterator();
     }
 
     protected class Node<K, V> {
@@ -151,21 +166,22 @@ public class TreeMap<K, V> implements Map<K, V> {
     }
 
     private class TreeKeysIterator implements Iterator<K> {
-        private Node<K, V> head;
+        private ArrayList<K> keySet;
+        private int count;
 
-        public TreeKeysIterator(Node<K, V> head) {
-            this.head = head;
+        public TreeKeysIterator() {
+            keySet = keySet();
+            count = 0;
         }
 
         @Override
         public boolean hasNext() {
-            if(head.left == null && head.right == null) return false;
-            return true;
+            return (count < keySet.size());
         }
 
         @Override
         public K next() {
-            return head.right.key;
+            return keySet.get(count++);
         }
     }
 }

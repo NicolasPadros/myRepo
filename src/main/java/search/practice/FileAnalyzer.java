@@ -1,4 +1,4 @@
-package search.practice.statistics;
+package search.practice;
 
 import anaydis.search.Map;
 
@@ -22,6 +22,8 @@ public class FileAnalyzer {
     private int success;
     private long initialTime;
     private long searchingTime;
+    private ArrayList<String> dictionary;
+
 
 
     public FileAnalyzer(Map<String, Integer> map) {
@@ -127,10 +129,11 @@ public class FileAnalyzer {
 
 
     public ArrayList<String> getDictionary() {
-        Iterator<String> iterator= map.keys();
-        ArrayList<String> keys = new ArrayList<>();
-        while(iterator.hasNext()) keys.add(iterator.next());
-        return keys;
+        Iterator<String> iterator = map.keys();
+        ArrayList<String> dictionary = new ArrayList<String>();
+
+        while(iterator.hasNext()) dictionary.add(iterator.next());
+        return dictionary;
     }
 
     public long getSearchingTime() {

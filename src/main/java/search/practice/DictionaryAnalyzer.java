@@ -1,4 +1,4 @@
-package search.practice.statistics;
+package search.practice;
 
 import anaydis.search.Map;
 
@@ -61,7 +61,7 @@ public class DictionaryAnalyzer {
 
     private void addLine(String[] words) {
         for (String m : words) {
-            if (dictionary.contains(m)) dictionary.add(m);
+            if (!dictionary.contains(m)) dictionary.add(m);
         }
     }
 

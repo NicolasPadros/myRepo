@@ -1,4 +1,4 @@
-package search.practice.statistics;
+package search.practice;
 
 import java.io.*;
 import java.util.ArrayList;
