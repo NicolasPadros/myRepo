@@ -1,4 +1,4 @@
-package search.practice;
+package anaydis.search.practice;
 
 import anaydis.search.Map;
 

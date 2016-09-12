@@ -1,14 +1,10 @@
-package search.practice;
+package anaydis.search.practice;
 
 
-import anaydis.search.Map;
-import search.BinarySearchMap;
-import search.RandomizedTreeMap;
-import search.TreeMap;
+import anaydis.search.BinarySearchMap;
+import anaydis.search.RandomizedTreeMap;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 
 /**
  * Created by isabel on 9/10/16.

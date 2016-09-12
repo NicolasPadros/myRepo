@@ -1,4 +1,4 @@
-package search.practice;
+package anaydis.search.practice;
 
 import anaydis.search.Map;
 
@@ -23,7 +23,7 @@ public class FileAnalyzer {
     private long initialTime;
     private long searchingTime;
     private ArrayList<String> dictionary;
-
+    private int wordsCount;
 
 
     public FileAnalyzer(Map<String, Integer> map) {
@@ -68,7 +68,7 @@ public class FileAnalyzer {
 
             String s;
             long initialTime = System.currentTimeMillis();
-            for(int i = 0; i < length; i++) {
+            for(int i = 0; i < wordsCount; i++) {
                 if((s = br.readLine()) != null) search(s);
             }
 
@@ -96,6 +96,7 @@ public class FileAnalyzer {
             if(!map.containsKey(m)) fails++;
             else success++;
         }
+
         searchingTime = System.currentTimeMillis() - initialTime;
     }
 

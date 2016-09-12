@@ -1,4 +1,4 @@
-package search.practice;
+package anaydis.search.practice;
 
 import java.io.*;
 import java.util.ArrayList;
