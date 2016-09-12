@@ -35,13 +35,13 @@ public class BinarySearchMap<K, V> extends ArrayMap<K, V> {
         int index = find(key, 0, size -1);
         if(index < 0){
             index = (-index)-1;
-            for( int i = size++; i > index+1; i--){
+            for(int i = size++; i >= index+1; i--){
                 keys[i] = keys[i-1];
                 values[i] = values[i-1];
             }
             keys[index] = key;
         }
-        V result = values[index];
+        V result = values[index+1];
         values[index] = value;
         return result;
     }
