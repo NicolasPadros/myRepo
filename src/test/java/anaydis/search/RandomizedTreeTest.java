@@ -15,15 +15,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RandomizedTreeTest {
 
     @Test
-    public void testBinarySearchInteger() {
+    public void TestRandomizedTree() {
 
         final RandomizedTreeMap<Integer, Integer> map = new RandomizedTreeMap<Integer, Integer>(Comparator.naturalOrder());
         final IntegerDataSetGenerator generator = new IntegerDataSetGenerator();
         final List<Integer> list = generator.createRandom(100);
         for (int i = 0; i < 100; i++) {
-            System.out.println(list.get(i));
             map.put(list.get(i), (int) (Math.random() * 100));
         }
+        System.out.println(map.get(list.get(0)));
         for (int i = 0; i < 100; i++) {
             if (map.containsKey(list.get(i))) map.get(list.get(i));
             map.remove(list.get(i));

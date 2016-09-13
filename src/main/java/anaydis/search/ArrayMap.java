@@ -74,8 +74,11 @@ public class ArrayMap<K, V> implements Map<K, V> {
 
     @Override
     public void clear() {
-        keys = (K[])new Object[keys.length];
-        values = (V[])new Object[keys.length];
+        for (int i = 0; i < size; i++) {
+            keys[i] = null;
+            values[i] = null;
+        }
+        size = 0;
     }
 
     @Override
