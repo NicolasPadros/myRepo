@@ -18,6 +18,7 @@ public class ArrayMapTest {
     @Test
     public void ArrayMapTest(){
         final ArrayMap<Integer, Integer> map = new ArrayMap<Integer, Integer>(100, Comparator.naturalOrder());
+        final ArrayMap<Integer, Integer> anotherMap = new ArrayMap<Integer, Integer>(Comparator.naturalOrder());
         final IntegerDataSetGenerator generator = new IntegerDataSetGenerator();
         final List<Integer> list = generator.createRandom(100);
         for(int i = 0; i < 100; i++){
@@ -28,12 +29,10 @@ public class ArrayMapTest {
             if(map.containsKey(list.get(i))) map.get(list.get(i));
             map.remove(list.get(i));
         }
-        Iterator<Integer> iterator = map.keys();
-        assertThat(!iterator.hasNext());
         map.clear();
         map.put(2, 2);
-        iterator = map.keys();
-        assertThat(iterator.next() == 2);
+        Iterator<Integer> iterator = map.keys();
+        assertThat(iterator.hasNext() && iterator.next() == 2);
 
     }
 }

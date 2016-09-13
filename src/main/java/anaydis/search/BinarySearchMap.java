@@ -14,11 +14,6 @@ public class BinarySearchMap<K, V> extends ArrayMap<K, V> {
     }
 
 
-    protected int indexOf(K key, Comparator<K> comparator) {
-        int index = find(key, 0, size()-1);
-        if(index < 0) return -1;
-        else return index;
-    }
 
     private int find(K key, int low, int high) {
         if(low > high) return -(low +1);

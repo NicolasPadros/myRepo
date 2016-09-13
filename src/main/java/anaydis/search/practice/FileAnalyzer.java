@@ -67,10 +67,11 @@ public class FileAnalyzer {
             br = new BufferedReader(fr);
 
             String s;
-            long initialTime = System.currentTimeMillis();
-            for(int i = 0; i < wordsCount; i++) {
+            long initialTime = System.nanoTime();
+            while(wordsCount < length) {
                 if((s = br.readLine()) != null) search(s);
             }
+            wordsCount = 0;
 
         }
         catch(Exception e){
@@ -95,9 +96,10 @@ public class FileAnalyzer {
         for(String m : words){
             if(!map.containsKey(m)) fails++;
             else success++;
+            wordsCount++;
         }
 
-        searchingTime = System.currentTimeMillis() - initialTime;
+        searchingTime = System.nanoTime() - initialTime;
     }
 
     private void aux(String linea) {

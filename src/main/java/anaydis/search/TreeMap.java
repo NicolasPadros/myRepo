@@ -133,7 +133,7 @@ public class TreeMap<K, V> implements Map<K, V> {
 
     @Override
     public void clear() {
-        head = new Node<>();
+        head = null;
     }
 
     @Override
@@ -161,7 +161,7 @@ public class TreeMap<K, V> implements Map<K, V> {
 
         @Override
         public String toString() {
-            return "$key[$value]";
+            return key + "[" + value + "]";
         }
     }
 

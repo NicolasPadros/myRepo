@@ -52,8 +52,9 @@ public class ArrayMap<K, V> implements Map<K, V> {
     @Override
     public V put(@NotNull K key, V value) {
         if (indexOf(key) == -1) {
-            size++;
             keys[size] = key;
+            size++;
+
         }
         V result = values[indexOf(key)];
         values[indexOf(key)] = value;
@@ -108,7 +109,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
 
         @Override
         public K next() {
-            return keys[count];
+            return keys[count++];
         }
     }
 }
