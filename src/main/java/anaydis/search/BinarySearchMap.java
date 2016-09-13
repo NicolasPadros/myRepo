@@ -8,11 +8,9 @@ import java.util.Comparator;
  * Created by FliaPadros on 10/9/2016.
  */
 public class BinarySearchMap<K, V> extends ArrayMap<K, V> {
-    private Comparator<K> comparator;
 
     public BinarySearchMap(int maxSize, Comparator<K> comparator) {
-        super(maxSize);
-        this.comparator = comparator;
+        super(maxSize, comparator);
     }
 
 

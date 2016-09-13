@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Objects;
 
@@ -16,11 +17,13 @@ public class ArrayMap<K, V> implements Map<K, V> {
     protected K[] keys;
     protected V[] values;
     protected int size;
+    protected Comparator<K> comparator;
 
-    public ArrayMap(int maxSize) {
-       keys =(K[]) new Object[maxSize];
-       values =(V[]) new Object[maxSize];
-       size = 0;
+    public ArrayMap(int maxSize, Comparator<K> comparator) {
+        keys =(K[]) new Object[maxSize];
+        values =(V[]) new Object[maxSize];
+        size = 0;
+        this.comparator = comparator;
     }
 
 
@@ -44,7 +47,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
     public V put(@NotNull K key, V value) {
         if (indexOf(key) == -1) {
             size++;
-            keys[indexOf(key)] = key;
+            keys[size] = key;
         }
         V result = values[indexOf(key)];
         values[indexOf(key)] = value;
@@ -54,7 +57,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
     public void remove(K key){
         int index = indexOf(key);
         if(index != -1){
-            for(int i = 0; i < size()-1; i++){
+            for(int i = index+1; i < size()-1; i++){
                 keys[i-1] = keys[i];
                 values[i-1] = values[i];
             }
@@ -74,9 +77,10 @@ public class ArrayMap<K, V> implements Map<K, V> {
     }
 
     protected int indexOf(K key){
-        for(int i = 0; i < keys.length; i++){
-            if(keys[i] == null) break;
-            if(keys[i].equals(key)) return i;
+        for(int i = 0; i < keys.length; i++) {
+            if (keys[i] != null) {
+                if (keys[i].equals(key)) return i;
+            }
         }
         return -1;
     }
