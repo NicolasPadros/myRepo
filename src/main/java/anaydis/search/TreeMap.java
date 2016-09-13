@@ -35,8 +35,7 @@ public class TreeMap<K, V> implements Map<K, V> {
 
     public V get(@NotNull K key) {
         Node<K, V> node = find(head, key);
-        if(node != null)return node.value;
-        return null;
+        return (node==null ? null : node.value);
     }
 
     private Node<K,V> find(Node<K, V> node, K key) {

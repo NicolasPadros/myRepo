@@ -30,6 +30,7 @@ public class FileAnalyzer {
         this.map = map;
         fails = 0;
         success = 0;
+        wordsCount = 0;
     }
 
     public void analyze(String file, int length) {
@@ -39,9 +40,10 @@ public class FileAnalyzer {
                 br = new BufferedReader(fr);
 
                 String s;
-                for(int i = 0; i < length; i++) {
+                while(wordsCount < length){
                     if((s = br.readLine()) != null) aux(s);
                 }
+                wordsCount = 0;
 
             }
             catch(Exception e){
@@ -71,6 +73,7 @@ public class FileAnalyzer {
             while(wordsCount < length && wordsCount < map.size()) {
                 if((s = br.readLine()) != null) search(s);
             }
+            System.out.println("WordsCount: " + wordsCount);
             wordsCount = 0;
 
         }
@@ -95,16 +98,17 @@ public class FileAnalyzer {
         String[] words = s.split("\\s+");
         wordsCount += words.length;
         for(String m : words){
+            if(map.containsKey(m)) success++;
+            else fails++;
         }
-        System.out.println(wordsCount);
         searchingTime = System.nanoTime() - initialTime;
     }
 
     private void aux(String linea) {
-            if(linea.equals("")) return;
-            String[] words = remove(linea).replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
-            //System.out.println(linea);
-            addLine(words);
+        if(linea.equals("")) return;
+        String[] words = remove(linea).replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
+        wordsCount+=words.length;
+        addLine(words);
         }
 
     private void addLine(String[] words) {
