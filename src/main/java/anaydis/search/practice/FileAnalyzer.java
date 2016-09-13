@@ -68,7 +68,7 @@ public class FileAnalyzer {
 
             String s;
             long initialTime = System.nanoTime();
-            while(wordsCount < length) {
+            while(wordsCount < length && wordsCount < map.size()) {
                 if((s = br.readLine()) != null) search(s);
             }
             wordsCount = 0;
@@ -93,12 +93,10 @@ public class FileAnalyzer {
     private void search(String s) {
         if(s.equals("")) return;
         String[] words = s.split("\\s+");
+        wordsCount += words.length;
         for(String m : words){
-            if(!map.containsKey(m)) fails++;
-            else success++;
-            wordsCount++;
         }
-
+        System.out.println(wordsCount);
         searchingTime = System.nanoTime() - initialTime;
     }
 

@@ -24,10 +24,14 @@ public class QuijoteMain {
         FileAnalyzer arrayMapAnalyzer = new FileAnalyzer(new BinarySearchMap<String, Integer>(200000, Comparator.naturalOrder()));
         FileAnalyzer randomizedTreeMapAnalyzer = new FileAnalyzer(new RandomizedTreeMap<String, Integer>(Comparator.naturalOrder()));
         arrayMapAnalyzer.analyze("src/main/resources/books/quijote.txt", 200000);
+        System.out.println("ArrayMap finished analyzing");
         randomizedTreeMapAnalyzer.analyze("src/main/resources/books/quijote.txt", 200000);
+        System.out.println("Randomized finished analyzing");
         for(int i = 0; i < nSizes.length; i++){
             arrayMapAnalyzer.search("src/main/resources/books/quijoteReversed.txt", nSizes[i]);
+            System.out.println("ArrayMap finished searching");
             randomizedTreeMapAnalyzer.search("src/main/resources/books/quijoteReversed.txt", nSizes[i]);
+            System.out.println("Randomized finished analyzing");
             System.out.println("ArrayMapTime: " + arrayMapAnalyzer.getSearchingTime());
             System.out.println("RandomizedTreeMap: " + randomizedTreeMapAnalyzer.getSearchingTime());
             System.out.println("ArrayMap: " + randomizedTreeMapAnalyzer.getSuccess());
