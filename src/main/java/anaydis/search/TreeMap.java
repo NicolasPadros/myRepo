@@ -48,8 +48,9 @@ public class TreeMap<K, V> implements Map<K, V> {
 
     @Override
     public V put(@NotNull K key, V value) {
+        V search = search(head, key);
         head = put(head, key, value);
-        return search(head, key);
+        return search;
     }
 
     protected V search(Node<K, V> node, K key) {

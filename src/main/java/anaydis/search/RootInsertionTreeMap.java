@@ -15,8 +15,9 @@ public class RootInsertionTreeMap<K, V> extends TreeMap<K, V> {
 
     @Override
     public V put(@NotNull K key, V value) {
+        V search = search(head, key);
         head = rootPut(head, key, value);
-        return search(head, key);
+        return search;
     }
 
     protected Node<K,V> rootPut(Node<K, V> node, K key, V value) {

@@ -23,6 +23,8 @@ public class TreeMapTest {
         node.key = 2;
         node.value = 3;
         System.out.println(node.toString());
+        map.put(2, 32);
+        System.out.println(map.put(2, 24));
         final List<Integer> list = generator.createRandom(100);
         for (int i = 0; i < 100; i++) {
             System.out.println(list.get(i));

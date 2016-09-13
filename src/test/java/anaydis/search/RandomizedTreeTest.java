@@ -20,6 +20,8 @@ public class RandomizedTreeTest {
         final RandomizedTreeMap<Integer, Integer> map = new RandomizedTreeMap<Integer, Integer>(Comparator.naturalOrder());
         final IntegerDataSetGenerator generator = new IntegerDataSetGenerator();
         final List<Integer> list = generator.createRandom(100);
+        map.put(2, 32);
+        System.out.println(map.put(2, 24));
         for (int i = 0; i < 100; i++) {
             map.put(list.get(i), (int) (Math.random() * 100));
         }
