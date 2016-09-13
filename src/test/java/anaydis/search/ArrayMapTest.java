@@ -30,6 +30,10 @@ public class ArrayMapTest {
         }
         Iterator<Integer> iterator = map.keys();
         assertThat(!iterator.hasNext());
+        map.clear();
+        map.put(2, 2);
+        iterator = map.keys();
+        assertThat(iterator.next() == 2);
 
     }
 }

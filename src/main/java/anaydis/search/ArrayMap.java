@@ -26,6 +26,12 @@ public class ArrayMap<K, V> implements Map<K, V> {
         this.comparator = comparator;
     }
 
+    public ArrayMap(Comparator<K> comparator) {
+        this.comparator = comparator;
+        keys =(K[]) new Object[10000];
+        values =(V[]) new Object[10000];
+        size = 0;
+    }
 
     @Override
     public int size() {
