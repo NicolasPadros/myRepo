@@ -25,13 +25,12 @@ public class TreeMapTest {
         System.out.println(node.toString());
         map.put(2, 32);
         System.out.println(map.put(2, 24));
-        final List<Integer> list = generator.createRandom(100);
-        for (int i = 0; i < 100; i++) {
-            System.out.println(list.get(i));
-            map.put(list.get(i), (int) (Math.random() * 100));
+        final List<Integer> list = generator.createRandom(10);
+        for (int i = 0; i < 10; i++) {
+            map.put(list.get(i), (int) (Math.random() * 10));
         }
         assertThat(map.size() == 100);
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             if (map.containsKey(list.get(i))) System.out.println(map.get(list.get(i)));
             map.remove(list.get(i));
         }
