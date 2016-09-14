@@ -35,7 +35,7 @@ public class TreeMap<K, V> implements Map<K, V> {
 
     public V get(@NotNull K key) {
         Node<K, V> node = find(head, key);
-        return search(head, key);
+        return (node==null ? null : node.value);
     }
 
     private Node<K,V> find(Node<K, V> node, K key) {
@@ -48,24 +48,11 @@ public class TreeMap<K, V> implements Map<K, V> {
 
     @Override
     public V put(@NotNull K key, V value) {
-        V search = search(head, key);
+        V search = find(head, key).value;
         head = put(head, key, value);
         return search;
     }
 
-    protected V search(Node<K, V> node, K key) {
-        if(node == null){
-            return null;
-        } else{
-            int cmp = comparator.compare(key, node.key);
-            if(cmp < 0) search(node.left, key);
-            if(cmp> 0) search(node.right, key);
-            else {
-                 return node.value;
-            }
-        }
-        return null;
-    }
 
     public ArrayList<K> keySet(){
         ArrayList<K> list = new ArrayList<K>();
